@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript">
+			var conut1 = "";
+			var fuhao = "";
+			var conut2 = "";
+			var regex = new RegExp("[\\d]");
+			function suanfa(){
+				switch(fuhao){
+					case '+':
+						conut1 = new Number(conut1) + new Number(conut2) ;
+						conut2 = "" ;
+						fuhao = "";
+						document.getElementById("shuchu").value = conut1 ;
+						break ;
+					case '-':
+						conut1 = new Number(conut1) - new Number(conut2) ;
+						conut2 = "";
+						fuhao = "";
+						document.getElementById("shuchu").value = conut1 ;
+						break ;
+					case '*':
+						conut1 = new Number(conut1) * new Number(conut2) ;
+						conut2 = "" ;
+						fuhao = "" ;
+						document.getElementById("shuchu").value = conut1 ;
+						break ;
+					case '/':
+						conut1 = new Number(conut1) / new Number(conut2) ;
+						conut2 = "";
+						fuhao = "" ;
+						document.getElementById("shuchu").value = conut1 ;
+						break ;
+				}
+			}
+//			function clean(){
+//				fuhao = "";
+//				conut2 = "";
+//			}
+			function jiafu(txt){
+				if(!regex.test(txt) && fuhao != ""){
+					suanfa();
+				}else if(txt == "c"){
+					conut1 = "";
+					fuhao = "";
+					conut2 = "";
+					document.getElementById("shuchu").value = 0 ;
+				}else if(regex.test(txt) && fuhao==""){
+					conut1 = conut1 + txt ;
+					document.getElementById("shuchu").value = conut1 ;
+				//	break ;
+				}else if(!regex.test(txt)){
+					fuhao = txt ;
+					document.getElementById("shuchu").value = txt ;
+				}else{
+					conut2 = conut2 + txt ;
+					document.getElementById("shuchu").value = conut2 ;
+				}
+				//alert(txt);
+			}
+		</script>
+		<style type="text/css">
+			#shuchu{
+				width: 402px;
+				height: 180px;
+			}
+			table{
+				
+			}
+			th{
+				background-color: bisque;
+				font-family: "宋体";
+				font-size:27px;
+				color: coral;
+				width: 99px;
+				height: 60px;
+			}
+			input{
+				background-color: bisque;
+				font-family: "宋体";
+				font-size:27px;
+				color: coral;
+				width: 99px;
+				height: 60px;
+			}
+			#iddenghao{
+				background-color: bisque;
+				font-family: "宋体";
+				font-size:27px;
+				color: coral;
+				width: 99px;
+				height: 120px;
+			}
+		</style>
+	</head>
+	<!--
+    	作者：offline
+    	时间：2016-11-17
+    	描述：实现一个小型计算机
+    -->
+	<body>
+		<div>
+			<form method="post">
+				<input type="text" id="shuchu" name="daan" value="0" />
+				<!--
+                	作者：offline
+                	时间：2016-11-17
+                	描述：<textarea id="shuchu" name="dana" value=""></textarea>
+                -->
+				<table border="1" cellspacing="0" cellpadding="0">
+					<tr>
+						<th><input type="button" value="c" onclick="jiafu('c')"/></th>
+						<th><input type="button" value="xxx" onclick="jiafu('xxx')"/></th>
+						<th><input type="button" value="/" onclick="jiafu('/')"/></th>
+						<th><input type="button" value="*" onclick="jiafu('*')"/></th>
+					</tr>
+					<tr>
+						<th><input type="button" value="7" onclick="jiafu(7)"/></th>
+						<th><input type="button" value="8" onclick="jiafu(8)"/></th>
+						<th><input type="button" value="9" onclick="jiafu(9)"/></th>
+						<th><input type="button" value="-" onclick="jiafu('-')"></th>
+					</tr><tr>
+						<th><input type="button" value="4" onclick="jiafu(4)"/></th>
+						<th><input type="button" value="5" onclick="jiafu(5)"/></th>
+						<th><input type="button" value="6" onclick="jiafu(6)"/></th>
+						<th><input type="button" value="+" onclick="jiafu('+')"/></th>
+					</tr>
+					<tr>
+						<th><input type="button" value="1" onclick="jiafu(1)"/></th>
+						<th><input type="button" value="2" onclick="jiafu(2)"/></th>
+						<th><input type="button" value="3" onclick="jiafu(3)"/></th>
+						<th rowspan="2"><input id="iddenghao" type="button" value="=" onclick="suanfa()"/></th>
+					</tr>
+					<tr>
+						<th><input type="button" value="%" onclick="jiafu('%')"/></th>
+						<th><input type="button" value="0" onclick="jiafu('0')"/></th>
+						<th><input type="button" value="." onclick="jiafu('.')"/></th>
+					</tr>
+				</table>
+			</form>
+		</div>
+	</body>
+</html>
